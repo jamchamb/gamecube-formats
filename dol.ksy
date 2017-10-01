@@ -6,7 +6,26 @@ meta:
 seq:
   - id: header
     type: header
+instances:
+  sections:
+    type: section(_index)
+    repeat: expr
+    repeat-expr: header.dol_n_sections
 types:
+  section:
+    params:
+      - id: idx
+        type: u4
+    instances:
+      offset:
+        type: u4
+        pos: header.section_offsets[idx]
+      address:
+        type: u4
+        pos: header.section_addresses[idx]
+      size:
+        type: u4
+        pos: header.section_offsets[idx]
   header:
     instances:
       dol_n_sections:
